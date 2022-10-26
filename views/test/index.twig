@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  <p>Welcome to Test {{title}}</p>
+  <table>
+    <tbody>
+      {% for i in 0..row %}
+      <tr>
+        {% for j in 0..col %}
+        <td>{{i}} * {{j}} = {{ i * j }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>c1</th>
+        <th>c2</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{row['id']}}</td>
+        <td>{{row['c1']}}</td>
+        <td>{{row['c2']}}</td>
+        <td><a href="/test/edit?id={{row['id']}}">編輯</a>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

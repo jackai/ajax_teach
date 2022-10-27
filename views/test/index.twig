@@ -2,18 +2,6 @@
 
 {% block body %}
   <h1>{{title}}</h1>
-  <p>Welcome to Test {{title}}</p>
-  <table>
-    <tbody>
-      {% for i in 0..row %}
-      <tr>
-        {% for j in 0..col %}
-        <td>{{i}} * {{j}} = {{ i * j }}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
   <table border="1">
     <thead>
       <tr>

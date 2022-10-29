@@ -2,24 +2,16 @@
 
 {% block body %}
   <h1>{{title}}</h1>
-  <p>正在編輯 {{data['id']}}</p>
+  <p>{% if data['id'] %}正在編輯 {{data['id']}} {% else %}新增資料{% endif %}</p>
   <form action="/test/save?id={{data['id']}}" method="post">
-  <table border="1">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>c1</th>
-        <th>c2</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{data['id']}}</td>
-        <td><input name="c1" type="text" value="{{data['c1']}}"></td>
-        <td><input name="c2" type="text" value="{{data['c2']}}"></td>
-      </tr>
-    </tbody>
-  </table>
-  <button type="submit">存檔</button>
+    <div class="mb-3">
+      <label for="c1" class="form-label">c1</label>
+      <input type="text" class="form-control" id="c1" name="c1" value="{{data['c1']}}">
+    </div>
+    <div class="mb-3">
+      <label for="c2" class="form-label">c2</label>
+      <input type="text" class="form-control" id="c2" name="c2" value="{{data['c2']}}">
+    </div>
+  <button type="submit" class="btn btn-primary">存檔</button>
   </form>
 {% endblock %}

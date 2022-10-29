@@ -22,7 +22,7 @@ router.get('/edit', async function(req, res, next) {
 
   const [rows,fields] = await mysql.execute('SELECT * FROM test WHERE id = ?', [id]);
   
-  res.render('test/edit', { 
+  res.render('test/edit', {
     data: rows[0],
     title: 'Test',
   });
@@ -30,16 +30,27 @@ router.get('/edit', async function(req, res, next) {
 
 router.post('/save', async function(req, res, next) {
   const id = req.query.id;
+  const { c1, c2 } = req.body;
 
   if (!id) {
-    return next(createError(404, 'id不存在'));
+    const [rows,fields] = await mysql.execute('INSERT INTO test (c1, c2) VALUES (?, ?)', [c1, c2]);
   }
-
-  const { c1, c2 } = req.body;
 
   const [rows,fields] = await mysql.execute('UPDATE test SET c1 = ?, c2 = ? WHERE id = ?', [c1, c2, id]);
   
   res.redirect('/test');
+});
+
+
+router.get('/create', async function(req, res, next) {
+  res.render('test/edit', { 
+    data: {
+      id: 0,
+      c1: '',
+      c2: '',
+    },
+    title: 'Test',
+  });
 });
 
 module.exports = router;

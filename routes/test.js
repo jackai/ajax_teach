@@ -53,4 +53,36 @@ router.get('/create', async function(req, res, next) {
   });
 });
 
+router.get('/search', async function(req, res, next) {
+  const param = [];
+  const sql = 'SELECT * FROM test ';
+  let querySql = '';
+
+  const { id, c1, c2 } = req.query;
+
+  if (id) {
+    param.push(id);
+    querySql = ' id = ?';
+  }
+
+  if (c1) {
+    param.push(c1);
+    querySql += querySql ? ` AND c1 = ?` : ' c1 = ?';
+  }
+
+  if (c2) {
+    param.push(c2);
+    querySql += querySql ? ` AND c2 = ?` : ' c2 = ?';
+  }
+
+  querySql = querySql ? `WHERE${querySql}` : querySql;
+
+  const [rows,fields] = await mysql.execute(sql + querySql, param);
+
+  res.json({
+    status: 'ok',
+    data: rows,
+  });
+});
+
 module.exports = router;

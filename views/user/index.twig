@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  {% if (user) %}
+  <p>歡迎 {{ user }} 登入！</p>
+  <form action="/user/logout" method="post"><button type="submit">logout</button></form>
+  {% else %}
+  <a href="/user/login">前往登入頁</a>
+  {% endif %}
+{% endblock %}

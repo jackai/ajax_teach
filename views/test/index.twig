@@ -3,12 +3,19 @@
 {% block body %}
   <h1>{{title}}</h1>
   <a href="/test/create" class="btn btn-primary">新增資料</a>
-  <table class="table table-striped table-hover">
+  <table class="table table-striped table-hover" id="test_table">
     <thead>
       <tr>
         <th>id</th>
         <th>c1</th>
         <th>c2</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th><input type="text" value="" id="id" class="form-control" /></th>
+        <th><input type="text" value="" id="c1" class="form-control" /></th>
+        <th><input type="text" value="" id="c2" class="form-control" /></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -22,4 +29,5 @@
       {% endfor %}
     </tbody>
   </table>
+  <script src="/javascripts/index.js"></script>
 {% endblock %}

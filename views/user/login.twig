@@ -1,0 +1,17 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h1>{{title}}</h1>
+  {% if (fail) %} <p>帳號或密碼錯誤</p>{% endif %}
+  <form action="/user/login" method="post">
+    <div class="mb-3">
+      <label for="username" class="form-label">username</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">password</label>
+      <input type="password" class="form-control" id="password" name="password" value="{{data['password']}}">
+    </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+{% endblock %}
